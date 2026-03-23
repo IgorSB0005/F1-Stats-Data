@@ -74,6 +74,9 @@ env.bak/
 venv.bak/
 backend/.venv
 
+.idea
+
+
 # PEP 582
 __pypackages__/
 
