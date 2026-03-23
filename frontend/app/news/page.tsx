@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-export default function Home() {
+export default function News() {
   return (
     <div>
-      <p>Home page</p>
+      <p>News page</p>
       <div>
         <p>Test element</p>
         <button>
-          <Link href="/news">Go to news</Link>
+          <Link href="/home">Go to home</Link>
         </button>
       </div>
     </div>
