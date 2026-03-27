@@ -1,3 +1,5 @@
+import { NewsSection } from "./news/newsSection";
+
 export default function Dashboard() {
   return (
     <div className="bg-red-600 py-24 sm:py-32">
@@ -78,13 +80,10 @@ export default function Dashboard() {
             <div className="absolute inset-px rounded-lg bg-black max-lg:rounded-b-4xl lg:rounded-r-4xl" />
             <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">
+                <p className="mt-2 mb-10 text-lg font-medium tracking-tight text-white max-lg:text-center">
                   F1 NEWS
                 </p>
-                <p className="mt-2 max-w-lg text-sm/6 text-gray-400 max-lg:text-center">
-                  Sit quis amet rutrum tellus ullamcorper ultricies libero dolor
-                  eget sem sodales gravida.
-                </p>
+                <NewsSection/>
               </div>
 
             </div>
