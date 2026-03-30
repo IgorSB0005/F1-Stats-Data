@@ -1,13 +1,27 @@
-from fastapi import FastAPI, Depends, Query
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
 from typing import List
-import schemas, crud
+from apscheduler.schedulers.background import BackgroundScheduler
+from .database import SessionLocal, engine, get_db, Base
+from .sync_news import sync_f1_news
+from . import models, schemas, crud
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="F1 News Service")
 
-@app.get("/news", response_model=List[schemas.News], tags=["News"])
-def get_all_news(
-    skip: int = 0, 
-    limit: int = 10,
-    tag: str = Query(None, description="filter tag")
-):
-    return crud.get_news(skip=skip, limit=limit, tag=tag)
+def scheduled_sync():
+    db = SessionLocal()
+    try:
+        sync_f1_news(db)
+    finally:
+        db.close()
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(scheduled_sync, 'interval', minutes=60)
+scheduler.add_job(scheduled_sync)
+scheduler.start()
+
+@app.get("/news", response_model=List[schemas.News])
+def read_news(db: Session = Depends(get_db)):
+    return crud.get_news(db)
