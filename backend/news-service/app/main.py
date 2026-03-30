@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -16,6 +17,19 @@ def scheduled_sync():
         sync_f1_news(db)
     finally:
         db.close()
+
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(scheduled_sync, 'interval', minutes=60)
