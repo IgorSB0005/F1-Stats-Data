@@ -1,0 +1,42 @@
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+.next/
+out/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+.DS_Store
+*.pem
+
+.vercel
+
+*.tsbuildinfo
+next-env.d.ts
+
+.ruff_cache/
+.pypirc
+
+# Abstra
+.abstra/
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Pixi / PDM
+.pdm-python
+.pdm-build/
+.pixi

@@ -5,7 +5,7 @@ export const mockNews: NewsItem[] = [
     id: "1",
     title: "News 1",
     summary:
-      "test news one",
+      "test news",
     imageUrl: "https://picsum.photos/600/400?random=1",
     publishedAt: "2026-03-27T10:00:00Z",
     slug: "new-platform-update",
