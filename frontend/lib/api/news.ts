@@ -1,32 +1,24 @@
-import type { NewsItem, NewsResponse } from "@/types/news";
-import { mockNews } from "@/mocks/news";
+import type { NewsItem } from "@/types/news";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
+const NEWS_API_KEY = "http://localhost:8000";
 
 export async function getLatestNews(limit = 8): Promise<NewsItem[]> {
-  await new Promise((resolve) => setTimeout(resolve, 400));
+  const response = await fetch(`${NEWS_API_KEY}/news?limit=${limit}`, {
+    next: { revalidate: 300 },
+  });
 
-  return [...mockNews]
+  if (!response.ok) {
+    throw new Error("cant resolve news");
+  }
+
+  const data = await response.json();
+
+  const newsArray: NewsItem[] = Array.isArray(data) ? data : [];
+
+  return [...newsArray]
     .sort(
       (a, b) =>
-        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
     )
     .slice(0, limit);
-
-  // const response = await fetch(`${API_BASE_URL}/news?limit=${limit}`, {
-  //   next: { revalidate: 300 }, // кэш на 5 минут
-  // });
-
-  // if (!response.ok) {
-  //   throw new Error("Не удалось загрузить новости");
-  // }
-
-  // const data: NewsResponse = await response.json();
-
-  // return data.items
-  //   .sort(
-  //     (a, b) =>
-  //       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-  //   )
-  //   .slice(0, limit);
 }
