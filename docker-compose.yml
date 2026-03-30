@@ -12,5 +12,27 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  service-news:
+    build: ./backend/news-service
+    container_name: f1_service_news
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/news-service/.env
+    depends_on:
+      - db
+    environment:
+      - SQLALCHEMY_DATABASE_URL=postgresql://user:password@db:5432/f1_db
+
+  frontend:
+    build: ./frontend
+    container_name: f1_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - service-news
+
 volumes:
   postgres_data:
