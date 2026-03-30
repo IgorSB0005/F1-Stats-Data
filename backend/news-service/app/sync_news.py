@@ -11,7 +11,7 @@ API_KEY = os.getenv("NEWS_API_KEY")
 NEWS_URL = 'https://newsapi.org/v2/everything'
 
 params = {
-    'q': 'Formula 1',
+    'q': '"Formula 1" OR "F1" OR "Grand Prix"',
     'language': 'en',
     'sortBy': 'publishedAt',
     'pageSize': 30,
