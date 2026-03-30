@@ -31,6 +31,9 @@ def sync_f1_news(db: Session):
 
     new_records = []
     for art in articles:
+        if art["description"] is None:
+            continue
+
         new_news = NewsModel(
             id=uuid.uuid4(),
             title=art.get("title"),
