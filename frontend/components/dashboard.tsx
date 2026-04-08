@@ -1,10 +1,18 @@
 import { NewsSection } from "./news/newsSection";
+import Image from "next/image";
 
 export default function Dashboard() {
   return (
-    <div className="bg-red-600 py-24 sm:py-32">
+    <div className="relative min-h-[calc(100vh-80px)] overflow-hidden">
+      <Image
+        src="/anotherPic/dashBackPic.jpg"
+        alt=""
+        fill
+        className="object-cover -z-10"
+        priority
+      />
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <p className="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
+        <p className="mx-auto mt-45 mb-30 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl">
           Everything you need about favorite sport
         </p>
         <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
@@ -37,7 +45,7 @@ export default function Dashboard() {
             <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
                 <p className="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">
-                  Performance
+                  STATS BATTLE
                 </p>
                 <p className="mt-2 max-w-lg text-sm/6 text-gray-400 max-lg:text-center">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit
@@ -45,11 +53,14 @@ export default function Dashboard() {
                 </p>
               </div>
               <div className="flex flex-1 items-center justify-center px-8 max-lg:pt-10 max-lg:pb-12 sm:px-10 lg:pb-2">
-                <img
-                  alt=""
-                  src="https://tailwindcss.com/plus-assets/img/component-images/dark-bento-03-performance.png"
-                  className="w-full max-lg:max-w-xs"
-                />
+                <div className="relative w-full max-lg:max-w-xs h-[300px]">
+                  <Image
+                    alt=""
+                    src="/dashboardPictures/dashboardBattle.png"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 max-lg:rounded-t-4xl" />
@@ -83,9 +94,8 @@ export default function Dashboard() {
                 <p className="mt-2 mb-10 text-lg font-medium tracking-tight text-white max-lg:text-center">
                   F1 NEWS
                 </p>
-                <NewsSection/>
+                <NewsSection />
               </div>
-
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 max-lg:rounded-b-4xl lg:rounded-r-4xl" />
           </div>
