@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import SignInBtn from "./signBtn";
 import { useState } from "react";
 import {
@@ -100,19 +101,18 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-black pt-5 pb-5">
+    <header className="bg-black pt-2 pb-2">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-              className="h-8 w-auto"
-            />
+            <Image
+            src="/anotherPic/f1logo.jpg"
+            alt=""
+            width={150}
+            height={32} />
           </a>
         </div>
         <div className="flex lg:hidden">
