@@ -2,6 +2,11 @@ services:
   db:
     image: postgres:15
     container_name: f1_stats_db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user -d f1_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     restart: always
     environment:
       POSTGRES_USER: user
@@ -20,9 +25,24 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - ./backend/news-service/.env
+      - ./backend/.env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    environment:
+      - SQLALCHEMY_DATABASE_URL=postgresql://user:password@db:5432/f1_db
+
+  service-stats:
+    build: ./backend/stats-service
+    container_name: f1_service_stats
+    restart: always
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       - SQLALCHEMY_DATABASE_URL=postgresql://user:password@db:5432/f1_db
 
@@ -34,6 +54,7 @@ services:
       - "3000:3000"
     depends_on:
       - service-news
+      - service-stats
 
 volumes:
   postgres_data:
