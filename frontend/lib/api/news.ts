@@ -2,7 +2,7 @@ import type { NewsItem } from "@/types/news";
 
 const NEWS_API_KEY = "http://localhost:8000";
 
-export async function getLatestNews(limit = 8): Promise<NewsItem[]> {
+export async function getLatestNews(limit = 20): Promise<NewsItem[]> {
   const response = await fetch(`${NEWS_API_KEY}/news?limit=${limit}`, {
     next: { revalidate: 300 },
   });

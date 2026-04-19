@@ -1,5 +1,8 @@
 import { NewsSection } from "./news/newsSection";
 import Image from "next/image";
+import StandingsSection from "@/components/standings/standingsSection";
+import StandingsSkeleton from "@/components/standings/standingsSkeleton";
+import { Suspense } from "react";
 
 export default function Dashboard() {
   return (
@@ -24,14 +27,11 @@ export default function Dashboard() {
                   DRIVERS STANDINGS
                 </p>
               </div>
-              <div className="@container relative min-h-120 w-full grow max-lg:mx-auto max-lg:max-w-sm">
-                <div className="absolute inset-x-10 top-10 bottom-0 overflow-hidden rounded-t-[12cqw] border-x-[3cqw] border-t-[3cqw] border-gray-700 bg-gray-900 outline outline-white/20">
-                  <img
-                    alt=""
-                    src="https://tailwindcss.com/plus-assets/img/component-images/bento-03-mobile-friendly.png"
-                    className="size-full object-cover object-top"
-                  />
-                </div>
+              <div className="h-full max-h-[900px] overflow-y-auto pr-2">
+                <Suspense fallback={<StandingsSkeleton />}>
+                  <StandingsSection />
+                </Suspense>
+                <div className="pointer-events-none sticky bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
             </div>
             <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 lg:rounded-l-4xl" />
