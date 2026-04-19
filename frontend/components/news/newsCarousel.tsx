@@ -17,7 +17,7 @@ export function NewsCarousel({ items }: NewsCarouselProps) {
   }
 
   return (
-    <div className="max-h-[720px] overflow-y-auto pr-2">
+    <div className="max-h-[900px] overflow-y-auto pr-2">
       <div className="flex flex-col gap-4">
         {items.map((item) => (
           <NewsCard key={item.id} item={item} />
