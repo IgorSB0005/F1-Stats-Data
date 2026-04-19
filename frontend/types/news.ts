@@ -11,3 +11,4 @@ export type NewsItem = {
 export type NewsResponse = {
   items: NewsItem[];
 };
+
