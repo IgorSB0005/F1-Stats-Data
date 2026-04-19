@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("NEWS_API_KEY")
-NEWS_URL = 'https://newsapi.org/v2/everything'
+API_NEWS_URL = os.getenv("NEWS_API_URL")
 
 params = {
     'q': '"Formula 1" OR "F1" OR "Grand Prix"',
@@ -22,7 +22,7 @@ def sync_f1_news(db: Session):
     db.query(NewsModel).delete()
     db.commit()
     try:
-        response = requests.get(NEWS_URL, params=params)
+        response = requests.get(API_NEWS_URL, params=params)
         response.raise_for_status()
         articles = response.json().get("articles", [])
     except Exception as e:
