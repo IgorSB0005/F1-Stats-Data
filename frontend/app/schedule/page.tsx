@@ -3,6 +3,8 @@ import type { RaceWeekend } from "@/types/schedule";
 import { getSeasonSchedule } from "@/lib/api/schedule";
 import { formatRaceDate } from "@/lib/formatDate";
 
+export const dynamic = 'force-dynamic';
+
 export default async function SchedulePage() {
   const races: RaceWeekend[] = await getSeasonSchedule();
 

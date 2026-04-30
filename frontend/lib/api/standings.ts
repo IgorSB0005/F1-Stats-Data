@@ -1,6 +1,6 @@
 import { StandingsDiplay } from "@/types/standings";
 
-const API_URL = "http://localhost:8001";
+const API_URL = "http://service-stats:8001";
 
 export async function getDriverStandings(): Promise<StandingsDiplay[]> {
   try {
