@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import SignInBtn from "./signBtn";
+import Link from "next/link";
 import { useState } from "react";
 import {
   Dialog,
@@ -168,7 +169,7 @@ export default function Header() {
           </Popover>
 
           <a
-            href="#"
+            href="/schedule"
             className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
           >
             SCHEDULE
