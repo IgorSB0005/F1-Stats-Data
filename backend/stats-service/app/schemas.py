@@ -14,3 +14,17 @@ class Standings(StandingsBase):
 
     class Config:
         from_attributes = True
+
+class RaceBase(BaseModel):
+    official_name: str
+    location: str
+    country: str
+    date_start: datetime
+    date_end: datetime
+    track_image: str
+    country_flag: str
+
+class Race(RaceBase):
+    id: UUID
+    class Config:
+        from_attributes = True
