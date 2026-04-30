@@ -7,6 +7,7 @@ from datetime import datetime
 from urllib.parse import quote
 
 API_STATS_URL = os.getenv("STATS_API_URL")
+API_SCHEDULE_URL = os.getenv("SCHEDULE_API_URL")
 
 def sync_f1_standings(db: Session):
     url = f"{API_STATS_URL}/current/driverStandings.json"
@@ -53,7 +54,7 @@ def sync_f1_standings(db: Session):
 
 def sync_f1_calendar(db: Session):
     current_year = datetime.now().year
-    url = f"https://api.openf1.org/v1/meetings?year={current_year}"
+    url = f"{API_SCHEDULE_URL}/meetings?year={current_year}"
     try:
         response = requests.get(url, timeout=30)
         response.raise_for_status()
