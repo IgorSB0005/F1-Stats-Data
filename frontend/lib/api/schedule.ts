@@ -1,6 +1,6 @@
 import type { RaceWeekend } from "@/types/schedule";
 
-const SCHEDULE_API_URL = "http://localhost:8000";
+const SCHEDULE_API_URL = "http://localhost:8001";
 
 export async function getSeasonSchedule(): Promise<RaceWeekend[]> {
   const response = await fetch(`${SCHEDULE_API_URL}/schedule`, {
