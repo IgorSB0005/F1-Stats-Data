@@ -181,7 +181,7 @@ export default function Header() {
             STATS BATTLE
           </a>
           <a
-            href="#"
+            href="/history"
             className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
           >
             HISTORY
