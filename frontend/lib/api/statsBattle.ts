@@ -292,8 +292,17 @@ export async function getBattleComparison({
   metric: BattleMetric;
   mode: BattleMode;
 }): Promise<ComparisonResponse> {
+  const baseUrl =
+    typeof window === "undefined"
+      ? process.env.STATS_SERVICE_URL
+      : process.env.NEXT_PUBLIC_STATS_SERVICE_URL;
+
+  if (!baseUrl) {
+    throw new Error("STATS service URL is not configured");
+  }
+
   const response = await fetch(
-    `${process.env.STATS_SERVICE_URL}/stats/battle`,
+    `${baseUrl}/stats/battle`,
     {
       method: "POST",
       headers: {

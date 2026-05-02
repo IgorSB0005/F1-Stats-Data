@@ -1,10 +1,10 @@
 export function NewsSkeleton() {
   return (
-    <div className="flex gap-4 overflow-hidden">
+    <div className="flex flex-col gap-4">
       {Array.from({ length: 4 }).map((_, index) => (
         <div
           key={index}
-          className="min-w-[280px] max-w-[320px] flex-shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900"
+          className="w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 sm:min-w-[280px] sm:max-w-[320px]"
         >
           <div className="h-44 w-full animate-pulse bg-neutral-800" />
           <div className="space-y-3 p-4">
