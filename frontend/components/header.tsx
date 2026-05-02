@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import SignInBtn from "./signBtn";
-import Link from "next/link";
 import { useState } from "react";
 import {
   Dialog,
@@ -16,12 +15,7 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
@@ -33,67 +27,67 @@ const products = [
     name: "Mercedes",
     description: "George Russell / Kimi Antonelli",
     href: "#",
-    icon: ChartPieIcon,
+    icon: "/teams/mercedesLogo.svg",
   },
   {
     name: "Ferrari",
     description: "Charles Leclerc / Lewis Hamilton",
     href: "#",
-    icon: CursorArrowRaysIcon,
+    icon: "/teams/ferrariLogo.svg",
   },
   {
     name: "Red Bull",
     description: "Max Verstappen / Isack Hadjar",
     href: "#",
-    icon: FingerPrintIcon,
+    icon: "/teams/redbullLogo.svg",
   },
   {
     name: "McLaren",
     description: "Lando Norris / Oscar Piastri",
     href: "#",
-    icon: SquaresPlusIcon,
+    icon: "/teams/mclarenLogo.svg",
   },
   {
     name: "Alpine",
     description: "Pierre Gasly / Franco Colapinto",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/aplineLogo.svg",
   },
   {
     name: "Aston Martine",
     description: "Fernando Alonso / Lance Stroll",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/astonmartinLogo.svg",
   },
   {
     name: "Racing Bulls",
     description: "Liam Lawson / Arvid Lindblad",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/rbLogo.svg",
   },
   {
     name: "Audi",
     description: "Nico Hulkenberg / Gabriel Bortoleto",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/audiLogo.svg.png",
   },
   {
     name: "Cadillac",
     description: "Sergio Perez / Valtteri Bottas",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/cadillacLogo.svg",
   },
   {
     name: "Wiliams",
     description: "Carlos Sainz / Alexander Albon",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/williamsLogo.svg",
   },
   {
     name: "Haas",
     description: "Esteban Ocon / Oliver Bearman",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: "/teams/haasLogo.svg",
   },
 ];
 
@@ -110,10 +104,11 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <Image
-            src="/anotherPic/f1logo.jpg"
-            alt=""
-            width={150}
-            height={32} />
+              src="/anotherPic/f1logo.jpg"
+              alt=""
+              width={150}
+              height={32}
+            />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -147,9 +142,12 @@ export default function Header() {
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-white/10"
                   >
                     <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-700/50 group-hover:bg-gray-700">
-                      <item.icon
-                        aria-hidden="true"
-                        className="size-6 text-gray-400 group-hover:text-white"
+                      <Image
+                        src={item.icon}
+                        alt={item.name}
+                        width={24}
+                        height={24}
+                        className="object-contain"
                       />
                     </div>
                     <div className="flex-auto">
@@ -175,7 +173,7 @@ export default function Header() {
             SCHEDULE
           </a>
           <a
-            href="#"
+            href="/statsBattle"
             className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
           >
             STATS BATTLE
