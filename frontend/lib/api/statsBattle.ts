@@ -1,4 +1,3 @@
-
 import type {
   BattleEntity,
   BattleMetric,
@@ -6,201 +5,179 @@ import type {
   ComparisonResponse,
 } from "@/types/statsBattle";
 
-
 const drivers: BattleEntity[] = [
   {
     id: "max_verstappen",
     name: "Max Verstappen",
-    image: "/images/drivers/verstappen.webp",
+    image: "/drivers/verstappenPP.webp",
     country: "Netherlands",
     type: "driver",
     teamColor: "#1E5BC6",
   },
-
   {
     id: "isack_hadjar",
     name: "Isack Hadjar",
-    image: "/images/drivers/hadjar.webp",
+    image: "/drivers/hadjarPP.webp",
     country: "France",
     type: "driver",
     teamColor: "#1E5BC6",
   },
-
   {
     id: "leclerc",
     name: "Charles Leclerc",
-    image: "/images/drivers/leclerc.webp",
+    image: "/drivers/leclercPP.webp",
     country: "Monaco",
     type: "driver",
     teamColor: "#DC0000",
   },
-
   {
     id: "hamilton",
     name: "Lewis Hamilton",
-    image: "/images/drivers/hamilton.webp",
+    image: "/drivers/hamiltonPP.webp",
     country: "United Kingdom",
     type: "driver",
-    teamColor: "#00D2BE",
+    teamColor: "#DC0000",
   },
-
   {
     id: "russell",
     name: "George Russell",
-    image: "/images/drivers/russell.webp",
+    image: "/drivers/russellPP.webp",
     country: "United Kingdom",
     type: "driver",
     teamColor: "#00D2BE",
   },
-
   {
     id: "antonelli",
     name: "Kimi Antonelli",
-    image: "/images/drivers/antonelli.webp",
+    image: "/drivers/antonelliPP.webp",
     country: "Italy",
     type: "driver",
     teamColor: "#00D2BE",
   },
-
   {
     id: "norris",
     name: "Lando Norris",
-    image: "/images/drivers/norris.webp",
+    image: "/drivers/norrisPP.webp",
     country: "United Kingdom",
     type: "driver",
     teamColor: "#FF8700",
   },
-
   {
     id: "piastri",
     name: "Oscar Piastri",
-    image: "/images/drivers/piastri.webp",
+    image: "/drivers/piastriPP.webp",
     country: "Australia",
     type: "driver",
     teamColor: "#FF8700",
   },
-
   {
     id: "alonso",
     name: "Fernando Alonso",
-    image: "/images/drivers/alonso.webp",
+    image: "/drivers/alonsoPP.webp",
     country: "Spain",
     type: "driver",
     teamColor: "#006F62",
   },
-
   {
     id: "stroll",
     name: "Lance Stroll",
-    image: "/images/drivers/stroll.webp",
+    image: "/drivers/strollPP.webp",
     country: "Canada",
     type: "driver",
     teamColor: "#006F62",
   },
-
   {
     id: "gasly",
     name: "Pierre Gasly",
-    image: "/images/drivers/gasly.webp",
+    image: "/drivers/gaslyPP.webp",
     country: "France",
     type: "driver",
     teamColor: "#0090FF",
   },
-
   {
     id: "colapinto",
     name: "Franco Colapinto",
-    image: "/images/drivers/colapinto.webp",
+    image: "/drivers/colapintoPP.webp",
     country: "Argentina",
     type: "driver",
     teamColor: "#0090FF",
   },
-
   {
     id: "ocon",
     name: "Esteban Ocon",
-    image: "/images/drivers/ocon.webp",
+    image: "/drivers/oconPP.webp",
     country: "France",
     type: "driver",
     teamColor: "#B6BABD",
   },
-
   {
     id: "bearman",
     name: "Oliver Bearman",
-    image: "/images/drivers/bearman.webp",
+    image: "/drivers/bearmanPP.webp",
     country: "United Kingdom",
     type: "driver",
     teamColor: "#B6BABD",
   },
-
   {
     id: "lawson",
     name: "Liam Lawson",
-    image: "/images/drivers/lawson.webp",
+    image: "/drivers/lawsonPP.webp",
     country: "New Zealand",
     type: "driver",
     teamColor: "#6692FF",
   },
-
   {
     id: "lindblad",
     name: "Arvid Lindblad",
-    image: "/images/drivers/lindblad.webp",
+    image: "/drivers/lindbladPP.webp",
     country: "United Kingdom",
     type: "driver",
     teamColor: "#6692FF",
   },
-
   {
     id: "albon",
     name: "Alexander Albon",
-    image: "/images/drivers/albon.webp",
+    image: "/drivers/albonPP.webp",
     country: "Thailand",
     type: "driver",
     teamColor: "#005AFF",
   },
-
   {
     id: "sainz",
     name: "Carlos Sainz",
-    image: "/images/drivers/sainz.webp",
+    image: "/drivers/sainzPP.webp",
     country: "Spain",
     type: "driver",
     teamColor: "#005AFF",
   },
-
   {
     id: "hulkenberg",
     name: "Nico Hulkenberg",
-    image: "/images/drivers/hulkenberg.webp",
+    image: "/drivers/hulkenbergPP.webp",
     country: "Germany",
     type: "driver",
     teamColor: "#00A19B",
   },
-
   {
     id: "bortoleto",
     name: "Gabriel Bortoleto",
-    image: "/images/drivers/bortoleto.webp",
+    image: "/drivers/bortoletoPP.webp",
     country: "Brazil",
     type: "driver",
     teamColor: "#00A19B",
   },
-
   {
     id: "perez",
     name: "Sergio Perez",
-    image: "/images/drivers/perez.webp",
+    image: "/drivers/perezPP.webp",
     country: "Mexico",
     type: "driver",
     teamColor: "#6E4C1E",
   },
-
   {
     id: "bottas",
     name: "Valtteri Bottas",
-    image: "/images/drivers/bottas.webp",
+    image: "/drivers/bottasPP.webp",
     country: "Finland",
     type: "driver",
     teamColor: "#6E4C1E",
@@ -216,7 +193,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#FF8700",
   },
-
   {
     id: "ferrari",
     name: "Ferrari",
@@ -225,7 +201,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#DC0000",
   },
-
   {
     id: "mercedes",
     name: "Mercedes",
@@ -234,7 +209,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#00D2BE",
   },
-
   {
     id: "redbull",
     name: "Red Bull Racing",
@@ -243,7 +217,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#1E5BC6",
   },
-
   {
     id: "astonmartin",
     name: "Aston Martin",
@@ -252,7 +225,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#006F62",
   },
-
   {
     id: "alpine",
     name: "Alpine",
@@ -261,7 +233,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#0090FF",
   },
-
   {
     id: "haas",
     name: "Haas",
@@ -270,7 +241,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#B6BABD",
   },
-
   {
     id: "racingbulls",
     name: "Racing Bulls",
@@ -279,7 +249,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#6692FF",
   },
-
   {
     id: "williams",
     name: "Williams",
@@ -288,7 +257,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#005AFF",
   },
-
   {
     id: "audi",
     name: "Audi",
@@ -297,7 +265,6 @@ const teams: BattleEntity[] = [
     type: "team",
     teamColor: "#00A19B",
   },
-
   {
     id: "cadillac",
     name: "Cadillac",
@@ -325,28 +292,26 @@ export async function getBattleComparison({
   metric: BattleMetric;
   mode: BattleMode;
 }): Promise<ComparisonResponse> {
-  const response = await fetch(`${process.env.API_URL}/stats/battle`, {
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-    },
-
-    body: JSON.stringify({
-      mode,
-      leftId,
-      rightId,
-      metric,
-    }),
-
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.STATS_SERVICE_URL}/stats/battle`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mode,
+        leftId,
+        rightId,
+        metric,
+      }),
+      cache: "no-store",
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Failed to fetch comparison");
   }
 
   return response.json();
-
-
 }
