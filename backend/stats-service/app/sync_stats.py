@@ -74,55 +74,23 @@ def sync_f1_calendar(db: Session):
     db.commit()
 
     new_races = []
-    if meetings:
-        for race in meetings:
-            raw_track_url = race.get('circuit_image') 
-            raw_flag_url = race.get('country_flag') 
+    for race in meetings:
+        raw_track_url = race.get('circuit_image')
+        raw_flag_url = race.get('country_flag')
 
-            fixed_track_url = raw_track_url.replace(" ", "%20")
-            fixed_flag_url = raw_flag_url.replace(" ", "%20")
+        fixed_track_url = raw_track_url.replace(" ", "%20")
+        fixed_flag_url = raw_flag_url.replace(" ", "%20")
 
-            new_races.append(RaceCalendarModel(
-                id=uuid.uuid4(),
-                official_name=race.get('meeting_official_name'),
-                location=race.get('location'),
-                country=race.get('country_name'),
-                date_start=datetime.fromisoformat(race['date_start'].replace('Z', '')),
-                date_end=datetime.fromisoformat(race['date_end'].replace('Z', '')),
-                track_image=fixed_track_url,
-                country_flag=fixed_flag_url
-            ))
-    else:
-        fallback_url = f"{API_STATS_URL}/{current_year}.json"
-        try:
-            response = requests.get(fallback_url, timeout=30)
-            response.raise_for_status()
-            races = response.json().get("MRData", {}).get("RaceTable", {}).get("Races", [])
-        except Exception as e:
-            print(f"Error fetching fallback calendar: {e}")
-            return
-
-        for race in races:
-            date_str = race.get("date")
-            time_str = race.get("time")
-            if date_str and time_str:
-                dt_start = datetime.fromisoformat(f"{date_str}T{time_str.replace('Z', '')}")
-            elif date_str:
-                dt_start = datetime.fromisoformat(f"{date_str}T00:00:00")
-            else:
-                dt_start = datetime.utcnow()
-
-            location = race.get("Circuit", {}).get("Location", {})
-            new_races.append(RaceCalendarModel(
-                id=uuid.uuid4(),
-                official_name=race.get("raceName", "Race Weekend"),
-                location=location.get("locality"),
-                country=location.get("country"),
-                date_start=dt_start,
-                date_end=dt_start + timedelta(days=1),
-                track_image="/anotherPic/dashBackground.jpg",
-                country_flag="/anotherPic/f1logo.jpg",
-            ))
+        new_races.append(RaceCalendarModel(
+            id=uuid.uuid4(),
+            official_name=race.get('meeting_official_name'),
+            location=race.get('location'),
+            country=race.get('country_name'),
+            date_start=datetime.fromisoformat(race['date_start'].replace('Z', '')),
+            date_end=datetime.fromisoformat(race['date_end'].replace('Z', '')),
+            track_image=fixed_track_url,
+            country_flag=fixed_flag_url
+        ))
 
     db.add_all(new_races)
     db.commit()
