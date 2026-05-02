@@ -4,6 +4,9 @@ from sqlalchemy.orm import Session
 from typing import List
 from apscheduler.schedulers.background import BackgroundScheduler
 
+from .schemas import BattleRequest, BattleResponse
+from .battle import fetch_entity_stats
+
 from .database import SessionLocal, engine, get_db, Base
 from .sync_stats import sync_f1_standings, sync_f1_calendar
 from . import models, schemas, crud
@@ -45,3 +48,25 @@ def read_standings(db: Session = Depends(get_db)):
 @app.get("/schedule", response_model=List[schemas.Race])
 def read_calendar(db: Session = Depends(get_db)):
     return db.query(models.RaceCalendarModel).order_by(models.RaceCalendarModel.date_start.asc()).all()
+
+
+@app.post("/stats/battle", response_model=schemas.BattleResponse)
+def compare_entities(request: schemas.BattleRequest):
+    left_data = fetch_entity_stats(request.mode, request.leftId, request.metric)
+    right_data = fetch_entity_stats(request.mode, request.rightId, request.metric)
+
+    left_val = left_data.get(request.metric, 0)
+    right_val = right_data.get(request.metric, 0)
+
+    if left_val > right_val:
+        winner = request.leftId
+    elif right_val > left_val:
+        winner = request.rightId
+    else:
+        winner = "draw"
+
+    return {
+        "leftValue": left_val,
+        "rightValue": right_val,
+        "winner": winner
+    }
