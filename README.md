@@ -23,19 +23,19 @@ A simple pet project with microservices for Formula 1 data:
 ## Quick Start
 1. Clone the repository:
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/IgorSB0005/F1-Stats-Data
    cd F1-Stats-Data
    ```
 2. Run the project:
    ```bash
-   docker compose up --build
+   docker-compose up --build
    ```
 3. Open the frontend in your browser:
    - http://localhost:3000
 
 ## Stop
 ```bash
-docker compose down
+docker-compose down
 ```
 
 ## Note
