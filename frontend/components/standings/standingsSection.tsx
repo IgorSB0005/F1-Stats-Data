@@ -10,7 +10,15 @@ export default function StandingsSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8001/standings")
+    const baseUrl = process.env.NEXT_PUBLIC_STATS_SERVICE_URL;
+
+    if (!baseUrl) {
+      setData([]);
+      setLoading(false);
+      return;
+    }
+
+    fetch(`${baseUrl}/standings`)
       .then((res) => res.json())
       .then((res) => setData(res))
       .catch(() => setData([]))

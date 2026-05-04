@@ -88,7 +88,7 @@ function BattleCard({
 
       <div className="relative flex flex-col items-center p-10">
         <div
-          className="relative mb-8 flex h-[270px] w-[270px] items-center justify-center overflow-hidden rounded-[2rem] border backdrop-blur-md"
+          className="relative mb-8 flex h-48 w-48 items-center justify-center overflow-hidden rounded-[2rem] border backdrop-blur-md sm:h-56 sm:w-56 lg:h-[270px] lg:w-[270px]"
           style={{
             borderColor: `${entity.teamColor}50`,
             background: `${entity.teamColor}10`,
@@ -109,7 +109,7 @@ function BattleCard({
           />
         </div>
 
-        <h2 className="mb-2 text-center text-4xl font-black text-white">
+        <h2 className="mb-2 text-center text-3xl font-black text-white sm:text-4xl">
           {entity.name}
         </h2>
 
@@ -128,7 +128,9 @@ function BattleCard({
             Result
           </p>
 
-          <span className="text-7xl font-black text-white">{value}</span>
+          <span className="text-5xl font-black text-white sm:text-6xl lg:text-7xl">
+            {value}
+          </span>
         </div>
       </div>
     </div>

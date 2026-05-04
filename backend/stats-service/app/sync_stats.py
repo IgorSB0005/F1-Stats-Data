@@ -3,7 +3,7 @@ import requests
 import uuid
 from sqlalchemy.orm import Session
 from .models import StandingsModel, RaceCalendarModel
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import quote
 
 API_STATS_URL = os.getenv("STATS_API_URL")
@@ -59,6 +59,13 @@ def sync_f1_calendar(db: Session):
         response = requests.get(url, timeout=30)
         response.raise_for_status()
         meetings = response.json()
+    except requests.HTTPError as e:
+        status = getattr(e.response, "status_code", None)
+        if status in {401, 403}:
+            meetings = []
+        else:
+            print(f"Error fetching calendar: {e}")
+            return
     except Exception as e:
         print(f"Error fetching calendar: {e}")
         return
@@ -68,7 +75,6 @@ def sync_f1_calendar(db: Session):
 
     new_races = []
     for race in meetings:
-
         raw_track_url = race.get('circuit_image')
         raw_flag_url = race.get('country_flag')
 

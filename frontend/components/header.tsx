@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import SignInBtn from "./signBtn";
 import { useState } from "react";
 import {
@@ -26,67 +27,67 @@ const products = [
   {
     name: "Mercedes",
     description: "George Russell / Kimi Antonelli",
-    href: "#",
+    href: "/statsBattle?mode=team&left=mercedes",
     icon: "/teams/mercedesLogo.svg",
   },
   {
     name: "Ferrari",
     description: "Charles Leclerc / Lewis Hamilton",
-    href: "#",
+    href: "/statsBattle?mode=team&left=ferrari",
     icon: "/teams/ferrariLogo.svg",
   },
   {
     name: "Red Bull",
     description: "Max Verstappen / Isack Hadjar",
-    href: "#",
+    href: "/statsBattle?mode=team&left=redbull",
     icon: "/teams/redbullLogo.svg",
   },
   {
     name: "McLaren",
     description: "Lando Norris / Oscar Piastri",
-    href: "#",
+    href: "/statsBattle?mode=team&left=mclaren",
     icon: "/teams/mclarenLogo.svg",
   },
   {
     name: "Alpine",
     description: "Pierre Gasly / Franco Colapinto",
-    href: "#",
+    href: "/statsBattle?mode=team&left=alpine",
     icon: "/teams/aplineLogo.svg",
   },
   {
-    name: "Aston Martine",
+    name: "Aston Martin",
     description: "Fernando Alonso / Lance Stroll",
-    href: "#",
+    href: "/statsBattle?mode=team&left=astonmartin",
     icon: "/teams/astonmartinLogo.svg",
   },
   {
     name: "Racing Bulls",
     description: "Liam Lawson / Arvid Lindblad",
-    href: "#",
+    href: "/statsBattle?mode=team&left=racingbulls",
     icon: "/teams/rbLogo.svg",
   },
   {
     name: "Audi",
     description: "Nico Hulkenberg / Gabriel Bortoleto",
-    href: "#",
+    href: "/statsBattle?mode=team&left=audi",
     icon: "/teams/audiLogo.svg.png",
   },
   {
     name: "Cadillac",
     description: "Sergio Perez / Valtteri Bottas",
-    href: "#",
+    href: "/statsBattle?mode=team&left=cadillac",
     icon: "/teams/cadillacLogo.svg",
   },
   {
-    name: "Wiliams",
+    name: "Williams",
     description: "Carlos Sainz / Alexander Albon",
-    href: "#",
+    href: "/statsBattle?mode=team&left=williams",
     icon: "/teams/williamsLogo.svg",
   },
   {
     name: "Haas",
     description: "Esteban Ocon / Oliver Bearman",
-    href: "#",
+    href: "/statsBattle?mode=team&left=haas",
     icon: "/teams/haasLogo.svg",
   },
 ];
@@ -96,20 +97,20 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-black pt-2 pb-2">
+    <header className="relative z-50 bg-black/90 pt-2 pb-2 border-b border-white/10 backdrop-blur-md">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link href="/home" className="-m-1.5 p-1.5">
             <Image
               src="/anotherPic/f1logo.jpg"
               alt=""
               width={150}
               height={32}
             />
-          </a>
+          </Link>
         </div>
         <div className="flex lg:hidden">
           <button
@@ -121,7 +122,7 @@ export default function Header() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+        <PopoverGroup className="hidden lg:flex lg:gap-x-8">
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]">
               TEAMS
@@ -133,7 +134,7 @@ export default function Header() {
 
             <PopoverPanel
               transition
-              className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-black  transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+              className="absolute left-1/2 z-50 mt-3 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-3xl bg-black transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
             >
               <div className="p-4">
                 {products.map((item) => (
@@ -151,13 +152,13 @@ export default function Header() {
                       />
                     </div>
                     <div className="flex-auto">
-                      <a
+                      <Link
                         href={item.href}
                         className="block font-semibold text-white"
                       >
                         {item.name}
                         <span className="absolute inset-0" />
-                      </a>
+                      </Link>
                       <p className="mt-1 text-gray-400">{item.description}</p>
                     </div>
                   </div>
@@ -166,29 +167,33 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          <a
+          <Link
+            href="/home"
+            className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
+          >
+            HOME
+          </Link>
+          <Link
             href="/schedule"
             className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
           >
             SCHEDULE
-          </a>
-          <a
+          </Link>
+          <Link
             href="/statsBattle"
             className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
           >
             STATS BATTLE
-          </a>
-          <a
+          </Link>
+          <Link
             href="/history"
             className="text-sm/6 font-semibold text-white hover:drop-shadow-[0_0_4px_rgba(255,255,255,1)]"
           >
             HISTORY
-          </a>
+          </Link>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-white">
-            <SignInBtn />
-          </a>
+          <SignInBtn />
         </div>
       </nav>
       <Dialog
@@ -197,16 +202,17 @@ export default function Header() {
         className="lg:hidden"
       >
         <div className="fixed inset-0 z-50" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-black/95 p-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
+            <Link href="/home" className="-m-1.5 p-1.5">
+              <span className="sr-only">F1 Hub</span>
+              <Image
+                src="/anotherPic/f1logo.jpg"
                 alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
+                width={120}
+                height={28}
               />
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -216,49 +222,63 @@ export default function Header() {
               <XMarkIcon aria-hidden="true" className="size-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-white/10">
-              <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-white hover:bg-white/5">
-                    Product
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="size-5 flex-none group-data-open:rotate-180"
-                    />
-                  </DisclosureButton>
-                  <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products].map((item) => (
-                      <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-white hover:bg-black"
-                      >
-                        {item.name}
-                      </DisclosureButton>
-                    ))}
-                  </DisclosurePanel>
-                </Disclosure>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                >
-                  Company
-                </a>
-              </div>
+
+          <div className="mt-8 space-y-6">
+            <div className="space-y-2">
+              <Link
+                href="/home"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+              >
+                Home
+              </Link>
+              <Link
+                href="/schedule"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+              >
+                Schedule
+              </Link>
+              <Link
+                href="/statsBattle"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+              >
+                Stats Battle
+              </Link>
+              <Link
+                href="/history"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
+              >
+                History
+              </Link>
+              <Disclosure as="div" className="-mx-3">
+                <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-white hover:bg-white/5">
+                  Teams
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="size-5 flex-none group-data-open:rotate-180"
+                  />
+                </DisclosureButton>
+                <DisclosurePanel className="mt-2 space-y-2">
+                  {[...products].map((item) => (
+                    <DisclosureButton
+                      key={item.name}
+                      as={Link}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-white hover:bg-white/5"
+                    >
+                      {item.name}
+                    </DisclosureButton>
+                  ))}
+                </DisclosurePanel>
+              </Disclosure>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <SignInBtn variant="mobile" />
             </div>
           </div>
         </DialogPanel>

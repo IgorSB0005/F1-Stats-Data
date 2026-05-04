@@ -6,82 +6,68 @@ import { Suspense } from "react";
 
 export default function Dashboard() {
   return (
-    <div className="relative min-h-[calc(100vh-80px)] overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden bg-black">
       <Image
         src="/anotherPic/dashBackground.jpg"
         alt=""
         fill
-        className="object-cover -z-10"
         priority
+        className="object-cover opacity-20"
       />
-      <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
-        <p className="mx-auto mt-45 mb-30 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-red-600 sm:text-5xl">
-          Everything you need about favorite sport
-        </p>
-        <div className="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
-          <div className="relative lg:row-span-2">
-            <div className="absolute inset-px rounded-lg bg-black/20 backdrop-blur-sm lg:rounded-l-4xl" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
-              <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 text-lg font-medium tracking-tight text-red-600 max-lg:text-center">
-                  DRIVERS STANDINGS
-                </p>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(239,68,68,0.14),transparent_45%)]" />
+
+      <div className="relative z-10 mx-auto max-w-[1800px] px-4 py-12 sm:px-6 lg:px-8">
+        <div className="mb-14 flex flex-col items-center text-center">
+          <p className="mb-3 text-sm uppercase tracking-[0.4em] text-red-500">
+            Formula 1 Hub
+          </p>
+          <h1 className="text-5xl font-black tracking-tight text-white sm:text-7xl">
+            Home Base
+          </h1>
+          <div className="mt-5 h-[2px] w-40 bg-gradient-to-r from-transparent via-red-500 to-transparent" />
+          <p className="mt-6 max-w-2xl text-base text-gray-300 sm:text-lg">
+            Latest headlines, live standings, and the fastest way to stay in sync
+            with the season.
+          </p>
+        </div>
+
+        <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+          <section className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-md">
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/45" />
+            <div className="relative p-8 sm:p-10">
+              <div className="mb-8 flex items-center justify-between gap-6">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.3em] text-red-500">
+                    Newswire
+                  </p>
+                  <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">
+                    F1 Headlines
+                  </h2>
+                </div>
               </div>
-              <div className="h-full max-h-[900px] overflow-y-auto pr-2">
+              <NewsSection />
+            </div>
+            <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-600 via-red-400 to-transparent opacity-80" />
+          </section>
+
+          <section className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 backdrop-blur-md">
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black/45" />
+            <div className="relative p-8 sm:p-10">
+              <p className="text-sm uppercase tracking-[0.3em] text-red-500">
+                Championship
+              </p>
+              <h2 className="mt-2 text-3xl font-bold text-white sm:text-4xl">
+                Driver Standings
+              </h2>
+              <div className="mt-8 max-h-[720px] overflow-y-auto pr-2">
                 <Suspense fallback={<StandingsSkeleton />}>
                   <StandingsSection />
                 </Suspense>
-                <div className="pointer-events-none sticky bottom-0 h-5 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="pointer-events-none sticky bottom-0 h-6 bg-gradient-to-t from-black/70 to-transparent" />
               </div>
             </div>
-            <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 lg:rounded-l-4xl" />
-          </div>
-          <div className="relative max-lg:row-start-1">
-            <div className="absolute inset-px rounded-lg bg-black/20 backdrop-blur-sm max-lg:rounded-t-4xl" />
-
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
-              <div className="@container relative w-full aspect-[4/5] overflow-hidden">
-                <Image
-                  alt=""
-                  src="/dashboardPictures/dashSBcard.png"
-                  fill
-                  className="object-cover object-center scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-            </div>
-
-            <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 max-lg:rounded-t-4xl" />
-          </div>
-          <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-            <div className="absolute inset-px rounded-lg bg-black/20 backdrop-blur-sm" />
-
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
-              <div className="@container relative w-full aspect-[3/4] overflow-hidden">
-                <Image
-                  alt=""
-                  src="/dashboardPictures/dashboardCard.png"
-                  fill
-                  className="object-contain object-center scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-            </div>
-
-            <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15" />
-          </div>
-          <div className="relative lg:row-span-2">
-            <div className="absolute inset-px rounded-lg bg-black/20 backdrop-blur-sm max-lg:rounded-b-4xl lg:rounded-r-4xl" />
-            <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-r-[calc(2rem+1px)]">
-              <div className="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-                <p className="mt-2 mb-10 text-lg font-medium tracking-tight text-red-600 max-lg:text-center">
-                  F1 NEWS
-                </p>
-                <NewsSection />
-              </div>
-            </div>
-            <div className="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 max-lg:rounded-b-4xl lg:rounded-r-4xl" />
-          </div>
+            <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-600 via-red-400 to-transparent opacity-80" />
+          </section>
         </div>
       </div>
     </div>

@@ -1,9 +1,20 @@
 import type { RaceWeekend } from "@/types/schedule";
 
-const SCHEDULE_API_URL = process.env.STATS_SERVICE_URL;
+function getStatsApiBase() {
+  const baseUrl =
+    typeof window === "undefined"
+      ? process.env.STATS_SERVICE_URL
+      : process.env.NEXT_PUBLIC_STATS_SERVICE_URL;
+
+  if (!baseUrl) {
+    throw new Error("STATS service URL is not configured");
+  }
+
+  return baseUrl;
+}
 
 export async function getSeasonSchedule(): Promise<RaceWeekend[]> {
-  const response = await fetch(`${SCHEDULE_API_URL}/schedule`, {
+  const response = await fetch(`${getStatsApiBase()}/schedule`, {
     next: { revalidate: 3600 },
   });
 

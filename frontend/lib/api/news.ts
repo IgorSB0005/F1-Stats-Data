@@ -1,9 +1,20 @@
 import type { NewsItem } from "@/types/news";
 
-const NEWS_API_URL = process.env.NEWS_SERVICE_URL;
+function getNewsApiBase() {
+  const baseUrl =
+    typeof window === "undefined"
+      ? process.env.NEWS_SERVICE_URL || process.env.NEXT_PUBLIC_NEWS_SERVICE_URL
+      : process.env.NEXT_PUBLIC_NEWS_SERVICE_URL || process.env.NEWS_SERVICE_URL;
+
+  if (!baseUrl) {
+    throw new Error("NEWS service URL is not configured");
+  }
+
+  return baseUrl;
+}
 
 export async function getLatestNews(limit = 20): Promise<NewsItem[]> {
-  const response = await fetch(`${NEWS_API_URL}/news?limit=${limit}`, {
+  const response = await fetch(`${getNewsApiBase()}/news?limit=${limit}`, {
     next: { revalidate: 300 },
   });
 
