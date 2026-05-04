@@ -1,10 +1,21 @@
 import { StandingsDiplay } from "@/types/standings";
 
-const API_URL = "http://localhost:8001";
+function getStatsApiBase() {
+  const baseUrl =
+    typeof window === "undefined"
+      ? process.env.STATS_SERVICE_URL || process.env.NEXT_PUBLIC_STATS_SERVICE_URL
+      : process.env.NEXT_PUBLIC_STATS_SERVICE_URL || process.env.STATS_SERVICE_URL;
+
+  if (!baseUrl) {
+    throw new Error("STATS service URL is not configured");
+  }
+
+  return baseUrl;
+}
 
 export async function getDriverStandings(): Promise<StandingsDiplay[]> {
   try {
-    const res = await fetch(`${API_URL}/standings`, {
+    const res = await fetch(`${getStatsApiBase()}/standings`, {
       cache: "no-store",
     });
 

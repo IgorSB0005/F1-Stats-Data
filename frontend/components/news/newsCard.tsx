@@ -18,7 +18,7 @@ export function NewsCard({ item }: NewsCardProps) {
   return (
     <Link
       href={`${item.source_url}`}
-      className="group block min-w-[280px] max-w-[320px] flex-shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 transition-transform duration-300 hover:-translate-y-1 hover:border-white/20"
+      className="group block w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 transition-transform duration-300 hover:-translate-y-1 hover:border-white/20"
     >
       <div className="relative h-44 w-full overflow-hidden">
         {item.image_url ? (
